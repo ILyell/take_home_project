@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Customer API" do
     it "sends subscrption info for a customer" do
 
-        create(:customer, name: "Ian")
+        create(:customer)
         test_customer = Customer.first
 
         headers = {"CONTENT_TYPE" => "application/json"}
