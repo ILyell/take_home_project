@@ -1,42 +1,93 @@
 require 'rails_helper'
 
 describe "Customer API" do
-    it "sends subscrption info for a customer" do
+    describe "Send customer info" do
+        it "returns all customer info and subscriptions" do
 
-        create(:customer)
-        test_customer = Customer.first
-
-        headers = {"CONTENT_TYPE" => "application/json"}
-        body =  { 
-            "data":{
-                "type": "customer",
-                "attributes":{
-                    "id": test_customer.id
+            create(:customer)
+            test_customer = Customer.first
+            create(:tea)
+            test_tea = Tea.first
+            subscription = {
+                "customer_id": test_customer.id,
+                "tea_id": test_tea.id,
+                "title": test_tea.title, 
+                "price": Faker::Number.decimal(l_digits: 2, r_digits: 2),
+                "status": "active",
+                "frequency": "Often" 
+            }
+            
+            Subscription.create(subscription)
+            headers = {"CONTENT_TYPE" => "application/json"}
+            body =  { 
+                "data":{
+                    "type": "customer",
+                    "attributes":{
+                        "id": test_customer.id
+                        }
                     }
                 }
-            }
 
-        post '/api/v0/customer', headers: headers, params: JSON.generate(body)
+            post '/api/v0/customer', headers: headers, params: JSON.generate(body)
 
-        expect(response).to be_successful
+            expect(response.status).to eq(200)
 
-        customer = JSON.parse(response.body, symbolize_names: true)
+            customer = JSON.parse(response.body, symbolize_names: true)
 
-        expect(customer).to have_key(:data)
-        expect(customer[:data]).to have_key(:type)
-        expect(customer[:data][:type]).to eq("customer")
-        expect(customer[:data]).to have_key(:id)
-        expect(customer[:data][:id]).to eq(test_customer.id.to_s)
-        
-        expect(customer[:data]).to have_key(:attributes)
-        expect(customer[:data][:attributes]).to have_key(:first_name)
-        expect(customer[:data][:attributes][:first_name]).to eq(test_customer.first_name)
-        expect(customer[:data][:attributes]).to have_key(:last_name)
-        expect(customer[:data][:attributes][:last_name]).to eq(test_customer.last_name)
-        expect(customer[:data][:attributes]).to have_key(:email)
-        expect(customer[:data][:attributes][:email]).to eq(test_customer.email)
-        expect(customer[:data][:attributes]).to have_key(:address)
-        expect(customer[:data][:attributes][:address]).to eq(test_customer.address)
+            expect(customer).to have_key(:data)
+            expect(customer[:data]).to have_key(:type)
+            expect(customer[:data][:type]).to eq("customer")
+            expect(customer[:data]).to have_key(:id)
+            expect(customer[:data][:id]).to eq(test_customer.id.to_s)
+            
+            expect(customer[:data]).to have_key(:attributes)
+            expect(customer[:data][:attributes]).to have_key(:first_name)
+            expect(customer[:data][:attributes][:first_name]).to eq(test_customer.first_name)
+            expect(customer[:data][:attributes]).to have_key(:last_name)
+            expect(customer[:data][:attributes][:last_name]).to eq(test_customer.last_name)
+            expect(customer[:data][:attributes]).to have_key(:email)
+            expect(customer[:data][:attributes][:email]).to eq(test_customer.email)
+            expect(customer[:data][:attributes]).to have_key(:address)
+            expect(customer[:data][:attributes][:address]).to eq(test_customer.address)
+            expect(customer[:data][:attributes]).to have_key(:subscriptions)
+            expect(customer[:data][:attributes][:subscriptions].count).to eq(1)
+            expect(customer[:data][:attributes][:subscriptions][0][:title]).to eq(test_tea.title)
+        end
 
+        it 'returns 404 if customer not found' do
+            headers = {"CONTENT_TYPE" => "application/json"}
+            body =  { 
+                "data":{
+                    "type": "customer",
+                    "attributes":{
+                        "id": 12133
+                        }
+                    }
+                }
+
+            post '/api/v0/customer', headers: headers, params: JSON.generate(body)
+
+            expect(response.status).to eq(404)
+            body = response.body
+            response = JSON.parse(body, symbolize_names: true)
+            
+            expect(response[:message]).to eq("Customer not found")
+        end
+
+        it 'returns 422 if request body is invalid' do
+            headers = {"CONTENT_TYPE" => "application/json"}
+            body =  { 
+                    "type": "customer",
+                    "id": 12133
+                }
+
+            post '/api/v0/customer', headers: headers, params: JSON.generate(body)
+
+            expect(response.status).to eq(422)
+            body = response.body
+            response = JSON.parse(body, symbolize_names: true)
+            
+            expect(response[:message]).to eq("Invalid request")
+        end
     end
 end

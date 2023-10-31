@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     namespace :v0 do
       post "customer", to: "customers#show"
       resources :teas, only: [:index, :show]
+      post "subscribe", to: "subscriptions#subscribe"
+      post "unsubscribe", to: "subscriptions#unsubscribe"
     end
   end
 end
