@@ -6,7 +6,18 @@ describe "Customer API" do
 
             create(:customer)
             test_customer = Customer.first
-
+            create(:tea)
+            test_tea = Tea.first
+            subscription = {
+                "customer_id": test_customer.id,
+                "tea_id": test_tea.id,
+                "title": test_tea.title, 
+                "price": Faker::Number.decimal(l_digits: 2, r_digits: 2),
+                "status": "active",
+                "frequency": "Often" 
+            }
+            
+            Subscription.create(subscription)
             headers = {"CONTENT_TYPE" => "application/json"}
             body =  { 
                 "data":{
@@ -39,7 +50,8 @@ describe "Customer API" do
             expect(customer[:data][:attributes]).to have_key(:address)
             expect(customer[:data][:attributes][:address]).to eq(test_customer.address)
             expect(customer[:data][:attributes]).to have_key(:subscriptions)
-            expect(customer[:data][:attributes][:subscriptions]).to eq([])
+            expect(customer[:data][:attributes][:subscriptions].count).to eq(1)
+            expect(customer[:data][:attributes][:subscriptions][0][:title]).to eq(test_tea.title)
         end
 
         it 'returns 404 if customer not found' do
@@ -75,7 +87,7 @@ describe "Customer API" do
             body = response.body
             response = JSON.parse(body, symbolize_names: true)
             
-            expect(response[:message]).to eq("Invalid request format")
+            expect(response[:message]).to eq("Invalid request")
         end
     end
 end
