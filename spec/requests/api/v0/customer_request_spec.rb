@@ -23,12 +23,20 @@ describe "Customer API" do
         customer = JSON.parse(response.body, symbolize_names: true)
 
         expect(customer).to have_key(:data)
-        expect(customer[:data]).to have_key(:attributes)
         expect(customer[:data]).to have_key(:type)
         expect(customer[:data][:type]).to eq("customer")
         expect(customer[:data]).to have_key(:id)
         expect(customer[:data][:id]).to eq(test_customer.id.to_s)
-        expect(customer[:data][:attributes]).to have_key(:name)
-        expect(customer[:data][:attributes][:name]).to eq(test_customer.name)
+        
+        expect(customer[:data]).to have_key(:attributes)
+        expect(customer[:data][:attributes]).to have_key(:first_name)
+        expect(customer[:data][:attributes][:first_name]).to eq(test_customer.first_name)
+        expect(customer[:data][:attributes]).to have_key(:last_name)
+        expect(customer[:data][:attributes][:last_name]).to eq(test_customer.last_name)
+        expect(customer[:data][:attributes]).to have_key(:email)
+        expect(customer[:data][:attributes][:email]).to eq(test_customer.email)
+        expect(customer[:data][:attributes]).to have_key(:address)
+        expect(customer[:data][:attributes][:address]).to eq(test_customer.address)
+
     end
 end
