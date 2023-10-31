@@ -55,10 +55,27 @@ describe "Customer API" do
 
             post '/api/v0/customer', headers: headers, params: JSON.generate(body)
 
-            expect(response.status).to eq(400)
-            response = JSON.parse(response.body, symbolize_names: true)
+            expect(response.status).to eq(404)
+            body = response.body
+            response = JSON.parse(body, symbolize_names: true)
             
             expect(response[:message]).to eq("Customer not found")
+        end
+
+        it 'returns 422 if request body is invalid' do
+            headers = {"CONTENT_TYPE" => "application/json"}
+            body =  { 
+                    "type": "customer",
+                    "id": 12133
+                }
+
+            post '/api/v0/customer', headers: headers, params: JSON.generate(body)
+
+            expect(response.status).to eq(422)
+            body = response.body
+            response = JSON.parse(body, symbolize_names: true)
+            
+            expect(response[:message]).to eq("Invalid request format")
         end
     end
 end
