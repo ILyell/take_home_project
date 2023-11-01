@@ -28,8 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_31_061858) do
     t.bigint "customer_id", null: false
     t.string "title"
     t.float "price"
-    t.integer "status"
-    t.integer "enum"
+    t.integer "status", default: 0
     t.string "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
