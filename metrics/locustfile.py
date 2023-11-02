@@ -4,7 +4,7 @@ from faker import Faker
     
 
 class MyUser(HttpUser):
-    host = "http://localhost:3000/api/v0"
+    host = "https://turing-take-home-bc328e948954.herokuapp.com/api/v0"
     wait_time = between(1, 5)  # Time between consecutive requests
     def on_start(self):
         self.faker = Faker()
