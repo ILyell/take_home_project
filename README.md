@@ -120,5 +120,56 @@ This is a rails take home project from Turing. This readme will walk through get
     }
 }
 ```
+### POST api/v0/subscribe
+  Subscribes a customer to a tea
 
+  Example: ```http://localhost:3000/api/v0/subscribe```
+
+  Request:
+  ```json
+{ 
+"data":{
+    "type": "subscription",
+    "attributes":{
+        "customer_id": 1,
+        "tea_id": 4,
+        "status": "active",
+        "title": "Earl Grey",
+        "price": 1.50,
+        "frequency": "Monthly"
+        }
+    }
+}
+```
+
+Response: 
+```json
+{
+    "message": "Success!"
+}
+```
+
+### POST api/v0/unsubscribe
+
+Example: ```http://localhost:3000/api/v0/unsubscribe```
+
+Request: 
+```json
+{ 
+"data":{
+    "type": "subscription",
+    "attributes":{
+        "customer_id": 1,
+        "tea_id": 1,
+        "id": 1
+        }
+    }
+}
+```
+Response: 
+```json
+{
+    "message": "Success!"
+}
+```
   
