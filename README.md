@@ -9,8 +9,11 @@ This is a rails take home project from Turing. This readme will walk through get
 ### Running the repo  
   - Clone and fork this repo
   - Run ```bundle install``` 
-  - Run ```rails db:{drop,create,migrate}``` to setup the postgresQL database. You can also run the ```seed``` command after if you would like to have mock data seeded into the database.
+  - Run ```rails db:{drop,create,migrate}``` to setup the postgresQL database. You can also run the ```rails db:seed``` command after if you would like to have mock data seeded into the database.
   - Run ```bundle exec rspec``` to run the full test suite. There should be 20 test passing with 100% simplecov coverage.
+###  Schema
+  ![Screenshot 2023-11-02 at 2 46 14 PM](https://github.com/ILyell/take_home_project/assets/127703036/b974b548-9051-43b9-bb21-72e4377b5dc0)
+
 
 ## Endpoint Usage
 
