@@ -7,8 +7,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+r = Random.new
 teas = []
-100.times do
+10000.times do
     tea = { title: Faker::Tea.variety,
             description: Faker::Tea.type,
             temperature: Faker::Number.decimal(l_digits: 2, r_digits: 1),
@@ -17,9 +18,10 @@ teas = []
     teas << tea
 end
 Tea.insert_all(teas)
+puts "Teas Created!"
 
 customers = []
-10.times do
+2000.times do
     customer = { first_name: Faker::Name.first_name,
                 last_name: Faker::Name.last_name,
                 email: Faker::Internet.email,
@@ -28,3 +30,104 @@ customers = []
     customers << customer
 end
 Customer.insert_all(customers)
+puts "Customers Created!"
+
+customers = Customer.all
+subscription_status = ["pending","active","inactive"]
+frequency = ["Monthly", "Bi-Annually", "Annually"]
+customers[0..500].each do |customer|
+    subscriptions = []
+    5.times do
+        subscription = {
+            tea_id: r.rand(1..10000),
+            customer_id: customer.id,
+            title: Faker::Tea.variety,
+            price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+            status: r.rand(1..3),
+            frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)  
+    puts "Subscriptions Created!"
+end
+customers[501..1000].each do |customer|
+    subscriptions = []
+    15.times do
+        subscription = {
+            tea_id: r.rand(1..10000),
+            customer_id: customer.id,
+            title: Faker::Tea.variety,
+            price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+            status: r.rand(1..3),
+            frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)  
+    puts "Subscriptions Created!"
+end
+customers[1001..1500].each do |customer|
+    subscriptions = []
+    50.times do
+        subscription = {
+        tea_id: r.rand(1..10000),
+        customer_id: customer.id,
+        title: Faker::Tea.variety,
+        price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+        status: r.rand(1..3),
+        frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)  
+    puts "Subscriptions Created!"
+end
+customers[1501..1700].each do |customer|
+    subscriptions = []
+    100.times do
+        subscription = {
+        tea_id: r.rand(1..10000),
+        customer_id: customer.id,
+        title: Faker::Tea.variety,
+        price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+        status: r.rand(1..3),
+        frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)
+    puts "Subscriptions Created!"
+end
+customers[1701..1900].each do |customer|
+    subscriptions = []
+    500.times do
+        subscription = {
+        tea_id: r.rand(1..10000),
+        customer_id: r.rand(1701..1900),
+        title: Faker::Tea.variety,
+        price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+        status: r.rand(1..3),
+        frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)  
+    puts "Subscriptions Created!"   
+end
+customers[1901..1999].each do |customer|
+    subscriptions = []
+    1000.times do
+        subscription = {
+        tea_id: r.rand(1..10000),
+        customer_id: customer.id,
+        title: Faker::Tea.variety,
+        price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
+        status: r.rand(1..3),
+        frequency:  r.rand(1..3)
+        }
+        subscriptions << subscription
+    end
+    Subscription.insert_all(subscriptions)  
+    puts "Subscriptions Created!"
+end
