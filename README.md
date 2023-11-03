@@ -183,9 +183,10 @@ Response:
 ![image](https://github.com/ILyell/take_home_project/assets/127703036/2e730918-72ef-4b3e-9b9a-dbb375f052aa)
 
 ### Add weighting to single user
-![image](https://github.com/ILyell/take_home_project/assets/127703036/3ef3e732-c9ba-4ee5-83c1-e73ab960ab54)
-![image](https://github.com/ILyell/take_home_project/assets/127703036/6a34152f-6aaa-4f55-a2e3-a6b8979788c9)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/a979dab6-7aac-4341-b6e2-2506f7077121)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/cf89cad8-52ed-45aa-9d76-98985186e092)
+
 
 ### Add second lurker user that is 75% of the user base
-![image](https://github.com/ILyell/take_home_project/assets/127703036/5b41060e-a0a3-4ef8-bc7f-58834d383a13)
-![image](https://github.com/ILyell/take_home_project/assets/127703036/6bbb3d1a-dd26-4f99-806e-0e42ea0e450b)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/9705afa7-2885-42a4-a89e-b1cd988ff0c7)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/181858a5-f5ab-4de7-b9a3-c8fba973d1b3)
