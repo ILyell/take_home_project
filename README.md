@@ -176,9 +176,16 @@ Response:
 ```
   
 ## Endpoint Testing with Locust
-    Included below are charts that were made utilizing Locust testing to swarm the endpoints in given ratios and task sets. Each test was run with 250 simulated users for 10 minutes. The server was hosted on Heroku with the basic dyno and the basic postgresql settings. The database was then pre-seeded with faker and factorybot to create 10k teas 2k users and 200k+ subscriptions. The testing script is included at ```metrics/locustfile.py``` and all saved data is in ```metrics/results```
+  Included below are charts that were made utilizing Locust testing to swarm the endpoints in given ratios and task sets. Each test was run with 250 simulated users for 10 minutes. The server was hosted on Heroku with the basic dyno and the basic postgresql settings. The database was then pre-seeded with faker and factorybot to create 10k teas 2k users and 200k+ subscriptions. The testing script is included at ```metrics/locustfile.py``` and all saved data is in ```metrics/results```
 
 ### Base User testing with no weighting. 
-/Users/ianlyell/turing_work/4mod/projects/take_home/metrics/results/base_testing.png
-/Users/ianlyell/turing_work/4mod/projects/take_home/metrics/results/base_endpoint_ratio.png
+![image](https://github.com/ILyell/take_home_project/assets/127703036/5dffa06b-4100-493f-96d2-eeb477d50e21)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/2e730918-72ef-4b3e-9b9a-dbb375f052aa)
 
+### Add weighting to single user
+![image](https://github.com/ILyell/take_home_project/assets/127703036/3ef3e732-c9ba-4ee5-83c1-e73ab960ab54)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/6a34152f-6aaa-4f55-a2e3-a6b8979788c9)
+
+### Add second lurker user that is 75% of the user base
+![image](https://github.com/ILyell/take_home_project/assets/127703036/5b41060e-a0a3-4ef8-bc7f-58834d383a13)
+![image](https://github.com/ILyell/take_home_project/assets/127703036/6bbb3d1a-dd26-4f99-806e-0e42ea0e450b)
