@@ -163,8 +163,7 @@ Request:
     "type": "subscription",
     "attributes":{
         "customer_id": 1,
-        "tea_id": 1,
-        "id": 1
+        "tea_id": 1
         }
     }
 }
