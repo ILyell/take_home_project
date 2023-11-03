@@ -177,6 +177,6 @@ Response:
 ```
   
 ## Endpoint Testing with Locust
-    Included below are charts that were made utilizing Locust testing to swarm the endpoints in given ratios and task sets. Each test was run with 250 simulated users for 10 minutes. The testing script is included at ```metrics/locustfile.py``` and all saved data is in ```metrics/results```
+    Included below are charts that were made utilizing Locust testing to swarm the endpoints in given ratios and task sets. Each test was run with 250 simulated users for 10 minutes. The server was hosted on Heroku with the basic dyno and the basic postgresql settings. The database was then pre-seeded with faker and factorybot to create 10k teas 2k users and 200k+ subscriptions. The testing script is included at ```metrics/locustfile.py``` and all saved data is in ```metrics/results```
 
 ### Base User testing with no weighting. 
