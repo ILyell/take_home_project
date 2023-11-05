@@ -6,7 +6,7 @@ class Api::V0::CustomersController < ApplicationController
     rescue ActionController::ParameterMissing, NoMethodError => e
         render json: { message: "Invalid request", errors: e }, status: 422
     rescue ActiveRecord::RecordNotFound => e
-        render json: { message: "Customer not found", errors: e }, status: :not_found
+        render json: { message: "Customer not found", errors: e }, status: 404
     end
 
     private

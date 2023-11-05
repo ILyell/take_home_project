@@ -6,17 +6,18 @@ class Api::V0::SubscriptionsController < ApplicationController
     rescue ActionController::ParameterMissing, NoMethodError => e
         render json: { message: "Invalid request", errors: e }, status: 422
     rescue ActiveRecord::RecordInvalid => e
-        render json: { message: "Validation Failed", errors: e }, status: :not_found
+        render json: { message: "Validation Failed", errors: e }, status: 404
     end
 
     def unsubscribe
-        subscription = Subscription.find_by!(customer_id: subscription_params[:attributes][:customer_id], tea_id: subscription_params[:attributes][:tea_id])
+        customer_id, tea_id = subscription_params[:attributes][:customer_id], subscription_params[:attributes][:tea_id]
+        subscription = Subscription.find_by!(customer_id: customer_id, tea_id: tea_id)
         Subscription.delete(subscription)
         render json: { message: "Success!" }, status: 200
     rescue ActionController::ParameterMissing, NoMethodError => e
         render json: { message: "Invalid request", errors: e }, status: 422
     rescue ActiveRecord::RecordNotFound => e
-        render json: { message: "Subscription not found", errors: e }, status: :not_found
+        render json: { message: "Subscription not found", errors: e }, status: 404
     end
 
     private
