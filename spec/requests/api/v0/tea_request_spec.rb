@@ -61,7 +61,7 @@ describe "Tea Request" do
 
             get api_v0_tea_path(12312)
             body = response.body
-            expect(response.status).to eq(404)
+            expect(response.status).to eq(410)
             tea = JSON.parse(body, symbolize_names: true)
 
             expect(tea).to have_key(:message)

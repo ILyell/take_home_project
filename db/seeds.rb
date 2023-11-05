@@ -1,6 +1,4 @@
-
-
-# This file should contain all the record creation needed to seed the database with its default values.
+This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
@@ -9,12 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 r = Random.new
 teas = []
-10000.times do
-    tea = { title: Faker::Tea.variety,
-            description: Faker::Tea.type,
-            temperature: Faker::Number.decimal(l_digits: 2, r_digits: 1),
-            brew_time: Faker::Number.decimal(l_digits: 1, r_digits: 2).to_s
+1000.times do
+    tea = { 
+        title: Faker::Tea.variety,
+        description: Faker::Tea.type,
+        temperature: Faker::Number.decimal(l_digits: 2, r_digits: 1),
+        brew_time: Faker::Number.decimal(l_digits: 1, r_digits: 2).to_s
     }
+    
     teas << tea
 end
 Tea.insert_all(teas)
@@ -29,105 +29,113 @@ customers = []
     }
     customers << customer
 end
-Customer.insert_all(customers)
+
+Customer.create(customers)
 puts "Customers Created!"
 
 customers = Customer.all
-subscription_status = ["pending","active","inactive"]
+
+status = ["pending","active","inactive"]
 frequency = ["Monthly", "Bi-Annually", "Annually"]
-customers[0..500].each do |customer|
+
+customers[1..500].each do |customer|
     subscriptions = []
     5.times do
         subscription = {
-            tea_id: r.rand(1..10000),
+            tea_id: r.rand(1..1000),
             customer_id: customer.id,
             title: Faker::Tea.variety,
             price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-            status: r.rand(1..3),
-            frequency:  r.rand(1..3)
+            status: status[r.rand(1..3)],
+            frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)  
-    puts "Subscriptions Created!"
 end
+puts "Subscriptions Created!"
+
 customers[501..1000].each do |customer|
     subscriptions = []
     15.times do
         subscription = {
-            tea_id: r.rand(1..10000),
+            tea_id: r.rand(1..1000),
             customer_id: customer.id,
             title: Faker::Tea.variety,
             price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-            status: r.rand(1..3),
-            frequency:  r.rand(1..3)
+            status: status[r.rand(1..3)],
+            frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)  
-    puts "Subscriptions Created!"
 end
+puts "Subscriptions Created!"
+
 customers[1001..1500].each do |customer|
     subscriptions = []
     50.times do
         subscription = {
-        tea_id: r.rand(1..10000),
+        tea_id: r.rand(1..1000),
         customer_id: customer.id,
         title: Faker::Tea.variety,
         price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-        status: r.rand(1..3),
-        frequency:  r.rand(1..3)
+        status: status[r.rand(1..3)],
+        frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)  
-    puts "Subscriptions Created!"
 end
+puts "Subscriptions Created!"
+
 customers[1501..1700].each do |customer|
     subscriptions = []
     100.times do
         subscription = {
-        tea_id: r.rand(1..10000),
+        tea_id: r.rand(1..1000),
         customer_id: customer.id,
         title: Faker::Tea.variety,
         price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-        status: r.rand(1..3),
-        frequency:  r.rand(1..3)
+        status: status[r.rand(1..3)],
+        frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)
-    puts "Subscriptions Created!"
 end
+puts "Subscriptions Created!"
+
 customers[1701..1900].each do |customer|
     subscriptions = []
     500.times do
         subscription = {
-        tea_id: r.rand(1..10000),
+        tea_id: r.rand(1..1000),
         customer_id: r.rand(1701..1900),
         title: Faker::Tea.variety,
         price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-        status: r.rand(1..3),
-        frequency:  r.rand(1..3)
+        status: status[r.rand(1..3)],
+        frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)  
-    puts "Subscriptions Created!"   
 end
+puts "Subscriptions Created!"
+
 customers[1901..1999].each do |customer|
     subscriptions = []
     1000.times do
         subscription = {
-        tea_id: r.rand(1..10000),
+        tea_id: r.rand(1..1000),
         customer_id: customer.id,
         title: Faker::Tea.variety,
         price:  Faker::Number.decimal(l_digits: 2, r_digits: 2),
-        status: r.rand(1..3),
-        frequency:  r.rand(1..3)
+        status: status[r.rand(1..3)],
+        frequency:  frequency[r.rand(1..3)]
         }
         subscriptions << subscription
     end
     Subscription.insert_all(subscriptions)  
-    puts "Subscriptions Created!"
 end
+puts "Subscriptions Created!"
