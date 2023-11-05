@@ -121,7 +121,8 @@ describe "Subscriptions Request" do
                 "data":{
                     "type": "subscription",
                     "attributes":{
-                        "id": test_subscription.id,
+                        "tea_id": test_subscription.tea.id,
+                        "customer_id": test_subscription.customer.id
                     }
                 }
             }

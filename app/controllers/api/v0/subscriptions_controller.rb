@@ -10,7 +10,8 @@ class Api::V0::SubscriptionsController < ApplicationController
     end
 
     def unsubscribe
-        subscription = Subscription.find_by!(customer_id: subscription_params[:attributes][:customer_id], tea_id: subscription_params[:attributes][:tea_id])
+        customer_id, tea_id = subscription_params[:attributes][:customer_id], subscription_params[:attributes][:tea_id]
+        subscription = Subscription.find_by!(customer_id: customer_id, tea_id: tea_id)
         Subscription.delete(subscription)
         render json: { message: "Success!" }, status: 200
     rescue ActionController::ParameterMissing, NoMethodError => e
@@ -22,9 +23,6 @@ class Api::V0::SubscriptionsController < ApplicationController
     private
 
     def subscription_params
-        params.require(:data).permit(
-            :type, 
-            attributes: [:customer_id, :tea_id, :title, :price, :status, :frequency]
-        )
+        params.require(:data).permit(:type, attributes: [:customer_id, :tea_id, :title, :price, :status, :frequency])
     end
 end

@@ -1,71 +1,79 @@
 from locust import HttpUser, task, between
 import random
 from faker import Faker
-    
 
-class MyUser(HttpUser):
+class User(HttpUser):
+    host = "http://localhost:3000/api/v0"
+    wait_time = between(1, 5)
     weight = 1
-    host = "https://turing-take-home-bc328e948954.herokuapp.com/api/v0"
-    wait_time = between(1, 5)  # Time between consecutive requests
+
     def on_start(self):
-        self.faker = Faker()
         self.customer_id = random.randint(1, 2000)
         self.set_tea_id = None
+        self.faker = Faker()
 
-    @task       
-    def GetCustomer(self):
-        endpoint = "/customer"
-
-        payload = {
-                    "data": {
-                        "type": "customer",
-                        "attributes": {
-                            "id": self.customer_id,
-                        }
-                    }
-                }
-
-        headers = {
-            "Content-Type": "application/json"
-        }
-
-        with self.client.post(endpoint, json=payload, headers=headers, catch_response=True) as response:
-            if response.status_code == 200:
-                response.success()
-            elif response.elapsed.total_seconds() > 1.0:
-                response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
-
-
-    @task(3)
+    @task(4)
     def GetAllTeas(self):
 
         endpoint = "/teas"
 
         with self.client.get(endpoint, catch_response=True) as response:
-            if response.status_code == 200:
-                response.success()
-            elif response.elapsed.total_seconds() > 1.0:
+            if response.elapsed.total_seconds() > 1.0:
                 response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
+            elif response.status_code == 200:
+                response.success()
+            else: 
+                response.failure("Request Failed")
 
-
-    @task(4)
+    @task(3)
     def GetATea(self):
-        tea_id = random.randint(1,10000)
 
+        tea_id = random.randint(1, 10000)
 
         endpoint = f"/teas/{tea_id}"
 
         with self.client.get(endpoint, catch_response=True) as response:
-            if response.status_code == 200:
-                response.success()
-            elif response.elapsed.total_seconds() > 1.0:
+            response_id = response.json()["data"]["id"]
+            if response.elapsed.total_seconds() > 1.0:
                 response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
+            elif response.status_code == 200 and tea_id == int(response_id):
+                response.success()
+            elif response.status_code == 410:
+                response.success()
+            else: 
+                response.failure(f"Request failed with status: {response.reason}")
 
+    @task
+    def GetACustomer(self):
+        endpoint = "/customer"
 
-    @task(4)
+        payload = {
+            "data":{
+                "type": "customer",
+                "attributes": {
+                    "id": self.customer_id
+                }
+            }
+        }
+
+        headers = { "Content-Type": "application/json "}
+
+        with self.client.post(endpoint, json=payload, headers=headers, catch_response=True) as response:
+            response_id = response.json()["data"]["id"]
+            if response.status_code == 200 and self.customer_id == int(response_id):
+                response.success()
+            elif response.elapsed.total_seconds() < 1.0:
+                response.failure(f"Request took to long: {response.elapsed.total_seconds()}")
+            else: 
+                response.failure(f"Request failed with status: {response.reason}")
+
+    @task(2)
     def Subscribe(self):
         endpoint = "/subscribe"
-        self.set_tea_id = random.randint(1,10000)
+
+        if self.set_tea_id == None:
+            self.set_tea_id = random.randint(1,10000)
+
         status = ["pending", "active", "inactive"]
         payload = {
             "data": {
@@ -120,32 +128,39 @@ class MyUser(HttpUser):
             elif response.elapsed.total_seconds() > 1.0:
                 response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
 
+
 class LurkerUser(HttpUser):
-    host = "https://turing-take-home-bc328e948954.herokuapp.com/api/v0"
-    wait_time = between(1, 5)  
+    host = "http://localhost:3000/api/v0"
+    wait_time = between(1, 5)
     weight = 3
 
-    @task
-    def GetATea(self):
-        tea_id = random.randint(1,10000)
-
-
-        endpoint = f"/teas/{tea_id}"
-
-        with self.client.get(endpoint, catch_response=True) as response:
-            if response.status_code == 200:
-                response.success()
-            elif response.elapsed.total_seconds() > 1.0:
-                response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
-
-
-    @task
+    @task(2)
     def GetAllTeas(self):
 
         endpoint = "/teas"
 
         with self.client.get(endpoint, catch_response=True) as response:
-            if response.status_code == 200:
-                response.success()
-            elif response.elapsed.total_seconds() > 1.0:
+            if response.elapsed.total_seconds() > 1.0:
                 response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
+            elif response.status_code == 200:
+                response.success()
+            else: 
+                response.failure("Request Failed")
+
+    @task
+    def GetATea(self):
+
+        tea_id = random.randint(1, 10000)
+
+        endpoint = f"/teas/{tea_id}"
+
+        with self.client.get(endpoint, catch_response=True) as response:
+            response_id = response.json()["data"]["id"]
+            if response.elapsed.total_seconds() > 1.0:
+                response.failure(f"Request took too long: {response.elapsed.total_seconds()} seconds")
+            elif response.status_code == 200 and tea_id == int(response_id):
+                response.success()
+            elif response.status_code == 410:
+                response.success()
+            else: 
+                response.failure(f"Request failed with status: {response.reason}")

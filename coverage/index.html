@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-11-01T11:28:22-05:00">2023-11-01T11:28:22-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-11-05T17:44:16-06:00">2023-11-05T17:44:16-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -30,7 +30,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.55
+         1.56
        </span>
     </span> hits/line
     )
@@ -43,8 +43,8 @@
   </div>
 
   <div class="t-line-summary">
-    <b>321</b> relevant lines,
-    <span class="green"><b>321</b> lines covered</span> and
+    <b>323</b> relevant lines,
+    <span class="green"><b>323</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
   100.0%
@@ -84,11 +84,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#05a2b43954c5bc8bad3007c707a8f10357648344" class="src_link" title="app/controllers/api/v0/subscriptions_controller.rb">app/controllers/api/v0/subscriptions_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">30</td>
-            <td class="cell--number">15</td>
-            <td class="cell--number">15</td>
+            <td class="cell--number">28</td>
+            <td class="cell--number">16</td>
+            <td class="cell--number">16</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.80</td>
+            <td class="cell--number">1.94</td>
             
           </tr>
         
@@ -128,9 +128,9 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#6a03418bb5e8f855e649747cb8b090ccd3a60acf" class="src_link" title="app/models/customer.rb">app/models/customer.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">3</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -337,7 +337,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#fa7d6499c5b6fd2089b20e00082c2c6068a4165c" class="src_link" title="spec/requests/api/v0/subscription_request_spec.rb">spec/requests/api/v0/subscription_request_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">180</td>
+            <td class="cell--number">181</td>
             <td class="cell--number">75</td>
             <td class="cell--number">75</td>
             <td class="cell--number">0</td>
@@ -605,8 +605,8 @@
     
 
     <div class="t-line-summary">
-      <b>15</b> relevant lines.
-      <span class="green"><b>15</b> lines covered</span> and
+      <b>16</b> relevant lines.
+      <span class="green"><b>16</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -756,18 +756,18 @@
 
             
 
-            <code class="ruby">        subscription = Subscription.find(subscription_params[:attributes][:id])</code>
+            <code class="ruby">        customer_id, tea_id = subscription_params[:attributes][:customer_id], subscription_params[:attributes][:tea_id]</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="14">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="2" data-linenumber="14">
+            <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">        Subscription.delete(subscription)</code>
+            <code class="ruby">        subscription = Subscription.find_by!(customer_id: customer_id, tea_id: tea_id)</code>
           </li>
         </div>
       
@@ -778,12 +778,23 @@
 
             
 
+            <code class="ruby">        Subscription.delete(subscription)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="16">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">        render json: { message: &quot;Success!&quot; }, status: 200</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="16">
+          <li class="never" data-hits="" data-linenumber="17">
             
             
 
@@ -794,7 +805,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="17">
+          <li class="covered" data-hits="1" data-linenumber="18">
             <span class="hits">1</span>
             
 
@@ -805,7 +816,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="18">
+          <li class="never" data-hits="" data-linenumber="19">
             
             
 
@@ -816,7 +827,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="19">
+          <li class="covered" data-hits="1" data-linenumber="20">
             <span class="hits">1</span>
             
 
@@ -827,7 +838,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="20">
+          <li class="never" data-hits="" data-linenumber="21">
             
             
 
@@ -838,7 +849,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="21">
+          <li class="never" data-hits="" data-linenumber="22">
             
             
 
@@ -849,7 +860,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
+          <li class="covered" data-hits="1" data-linenumber="23">
             <span class="hits">1</span>
             
 
@@ -860,7 +871,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="23">
+          <li class="never" data-hits="" data-linenumber="24">
             
             
 
@@ -871,7 +882,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
+          <li class="covered" data-hits="1" data-linenumber="25">
             <span class="hits">1</span>
             
 
@@ -882,24 +893,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="7" data-linenumber="25">
-            <span class="hits">7</span>
+          <li class="covered" data-hits="9" data-linenumber="26">
+            <span class="hits">9</span>
             
 
             
 
-            <code class="ruby">        params.require(:data).permit(</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="26">
-            
-            
-
-            
-
-            <code class="ruby">            :type, </code>
+            <code class="ruby">        params.require(:data).permit(:type, attributes: [:customer_id, :tea_id, :title, :price, :status, :frequency])</code>
           </li>
         </div>
       
@@ -910,34 +910,12 @@
 
             
 
-            <code class="ruby">            attributes: [:customer_id, :tea_id, :title, :price, :status, :frequency, :id]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="28">
-            
-            
-
-            
-
-            <code class="ruby">        )</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="29">
-            
-            
-
-            
-
             <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
+          <li class="never" data-hits="" data-linenumber="28">
             
             
 
@@ -1018,7 +996,7 @@
 
             
 
-            <code class="ruby">        render json: TeaSerializer.new(Tea.all)</code>
+            <code class="ruby">        render json: TeaSerializer.new(Tea.limit(20))</code>
           </li>
         </div>
       
@@ -1084,7 +1062,7 @@
 
             
 
-            <code class="ruby">        render json: { message: &quot;Tea not found&quot;, errors: e}, status: :not_found</code>
+            <code class="ruby">        render json: { message: &quot;Tea not found&quot;, errors: e}, status: 410</code>
           </li>
         </div>
       
@@ -1246,8 +1224,8 @@
     
 
     <div class="t-line-summary">
-      <b>3</b> relevant lines.
-      <span class="green"><b>3</b> lines covered</span> and
+      <b>4</b> relevant lines.
+      <span class="green"><b>4</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1292,7 +1270,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="covered" data-hits="1" data-linenumber="4">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    validates :email, uniqueness: true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="5">
             
             
 
@@ -7112,7 +7101,7 @@
 
             
 
-            <code class="ruby">                        &quot;id&quot;: test_subscription.id,</code>
+            <code class="ruby">                        &quot;tea_id&quot;: test_subscription.tea.id,</code>
           </li>
         </div>
       
@@ -7123,7 +7112,7 @@
 
             
 
-            <code class="ruby">                    }</code>
+            <code class="ruby">                        &quot;customer_id&quot;: test_subscription.customer.id</code>
           </li>
         </div>
       
@@ -7134,7 +7123,7 @@
 
             
 
-            <code class="ruby">                }</code>
+            <code class="ruby">                    }</code>
           </li>
         </div>
       
@@ -7145,12 +7134,23 @@
 
             
 
+            <code class="ruby">                }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="128">
+            
+            
+
+            
+
             <code class="ruby">            }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="128">
+          <li class="covered" data-hits="1" data-linenumber="129">
             <span class="hits">1</span>
             
 
@@ -7161,24 +7161,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="129">
+          <li class="never" data-hits="" data-linenumber="130">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="130">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response.status).to eq(200)</code>
           </li>
         </div>
       
@@ -7189,7 +7178,7 @@
 
             
 
-            <code class="ruby">            response_body = response.body</code>
+            <code class="ruby">            expect(response.status).to eq(200)</code>
           </li>
         </div>
       
@@ -7200,29 +7189,29 @@
 
             
 
+            <code class="ruby">            response_body = response.body</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="133">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">            response = JSON.parse(response_body, symbolize_names: true)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="133">
+          <li class="never" data-hits="" data-linenumber="134">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="134">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
@@ -7233,18 +7222,18 @@
 
             
 
-            <code class="ruby">            expect(response[:message]).to eq(&quot;Success!&quot;)</code>
+            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="136">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="136">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        end</code>
+            
+
+            <code class="ruby">            expect(response[:message]).to eq(&quot;Success!&quot;)</code>
           </li>
         </div>
       
@@ -7255,18 +7244,18 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="138">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="138">
+            
             
 
             
 
-            <code class="ruby">        it &quot;Returns 422 if request body is invalid&quot; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -7277,18 +7266,18 @@
 
             
 
-            <code class="ruby">            headers = {&quot;CONTENT_TYPE&quot; =&gt; &quot;application/json&quot;}</code>
+            <code class="ruby">        it &quot;Returns 422 if request body is invalid&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="140">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="140">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">            headers = {&quot;CONTENT_TYPE&quot; =&gt; &quot;application/json&quot;}</code>
           </li>
         </div>
       
@@ -7299,12 +7288,23 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="142">
+            
+            
+
+            
+
             <code class="ruby">            request_body =  {</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="142">
+          <li class="covered" data-hits="1" data-linenumber="143">
             <span class="hits">1</span>
             
 
@@ -7315,7 +7315,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="143">
+          <li class="never" data-hits="" data-linenumber="144">
             
             
 
@@ -7326,24 +7326,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="144">
-            
-            
-
-            
-
-            <code class="ruby">                }</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="145">
             
             
 
             
 
-            <code class="ruby">            }</code>
+            <code class="ruby">                }</code>
           </li>
         </div>
       
@@ -7354,12 +7343,23 @@
 
             
 
+            <code class="ruby">            }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="147">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="147">
+          <li class="covered" data-hits="1" data-linenumber="148">
             <span class="hits">1</span>
             
 
@@ -7370,24 +7370,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="148">
+          <li class="never" data-hits="" data-linenumber="149">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="149">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response.status).to eq(422)</code>
           </li>
         </div>
       
@@ -7398,7 +7387,7 @@
 
             
 
-            <code class="ruby">            response_body = response.body</code>
+            <code class="ruby">            expect(response.status).to eq(422)</code>
           </li>
         </div>
       
@@ -7409,29 +7398,29 @@
 
             
 
+            <code class="ruby">            response_body = response.body</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="152">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">            response = JSON.parse(response_body, symbolize_names: true)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="152">
+          <li class="never" data-hits="" data-linenumber="153">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="153">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
@@ -7442,7 +7431,7 @@
 
             
 
-            <code class="ruby">            expect(response[:message]).to eq(&quot;Invalid request&quot;)</code>
+            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
@@ -7453,18 +7442,18 @@
 
             
 
-            <code class="ruby">            expect(response).to have_key(:errors)</code>
+            <code class="ruby">            expect(response[:message]).to eq(&quot;Invalid request&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="156">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="156">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        end</code>
+            
+
+            <code class="ruby">            expect(response).to have_key(:errors)</code>
           </li>
         </div>
       
@@ -7475,18 +7464,18 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="158">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="158">
+            
             
 
             
 
-            <code class="ruby">        it &quot;Returns 404 if invalid flields / ID&quot; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -7497,12 +7486,23 @@
 
             
 
+            <code class="ruby">        it &quot;Returns 404 if invalid flields / ID&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="160">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">            headers = {&quot;CONTENT_TYPE&quot; =&gt; &quot;application/json&quot;}</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="160">
+          <li class="never" data-hits="" data-linenumber="161">
             
             
 
@@ -7513,7 +7513,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="161">
+          <li class="covered" data-hits="1" data-linenumber="162">
             <span class="hits">1</span>
             
 
@@ -7524,7 +7524,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="162">
+          <li class="never" data-hits="" data-linenumber="163">
             
             
 
@@ -7535,7 +7535,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="163">
+          <li class="never" data-hits="" data-linenumber="164">
             
             
 
@@ -7546,7 +7546,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="164">
+          <li class="never" data-hits="" data-linenumber="165">
             
             
 
@@ -7557,7 +7557,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="165">
+          <li class="never" data-hits="" data-linenumber="166">
             
             
 
@@ -7568,7 +7568,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="166">
+          <li class="never" data-hits="" data-linenumber="167">
             
             
 
@@ -7579,7 +7579,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="167">
+          <li class="never" data-hits="" data-linenumber="168">
             
             
 
@@ -7590,7 +7590,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="168">
+          <li class="covered" data-hits="1" data-linenumber="169">
             <span class="hits">1</span>
             
 
@@ -7601,24 +7601,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="169">
+          <li class="never" data-hits="" data-linenumber="170">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="170">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response.status).to eq(404)</code>
           </li>
         </div>
       
@@ -7629,7 +7618,7 @@
 
             
 
-            <code class="ruby">            response_body = response.body</code>
+            <code class="ruby">            expect(response.status).to eq(404)</code>
           </li>
         </div>
       
@@ -7640,29 +7629,29 @@
 
             
 
+            <code class="ruby">            response_body = response.body</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="173">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">            response = JSON.parse(response_body, symbolize_names: true)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="173">
+          <li class="never" data-hits="" data-linenumber="174">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="174">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
@@ -7673,7 +7662,7 @@
 
             
 
-            <code class="ruby">            expect(response[:message]).to eq(&quot;Subscription not found&quot;)</code>
+            <code class="ruby">            expect(response).to have_key(:message)</code>
           </li>
         </div>
       
@@ -7684,18 +7673,18 @@
 
             
 
-            <code class="ruby">            expect(response).to have_key(:errors)</code>
+            <code class="ruby">            expect(response[:message]).to eq(&quot;Subscription not found&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="177">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="177">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">            expect(response).to have_key(:errors)</code>
           </li>
         </div>
       
@@ -7706,7 +7695,7 @@
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -7717,12 +7706,23 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="180">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="181">
             
             
 
@@ -8463,7 +8463,7 @@
 
             
 
-            <code class="ruby">            expect(response.status).to eq(404)</code>
+            <code class="ruby">            expect(response.status).to eq(410)</code>
           </li>
         </div>
       
